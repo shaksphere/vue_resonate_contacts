@@ -7,11 +7,11 @@
     </div>
     <ul>
       <li v-for="contact in filteredContacts" :key="contact.id" class="contact">
-        <div class="contact__header" @click="contact.showMenu = !contact.showMenu">
+        <div class="contact__header" @click="toggleMenu(contact)">
           <div class="contact__name">{{ contact.id }}. {{ contact.name }}</div>
           <div class="contact__menu-toggle">{{ contact.showMenu ? 'Hide -' : 'Show Details +' }}</div>
         </div>
-        <div class="contact__menu" v-if="contact.showMenu">
+        <div class="contact__menu" v-if="contact.showMenu && contact.showMenuDelay" :class="{ showMenu: contact.showMenuDelay }">
           <div class="contact__item">
             <span class="contact__item-label">Username:</span>
             <span class="contact__item-value">{{ contact.username }}</span>
@@ -43,8 +43,8 @@
 </template>
 
 <script>
+import anime from 'animejs';
 import './styles.scss';
-
 
 export default {
   
@@ -73,15 +73,40 @@ export default {
         this.contacts = data.map(contact => {
           return {
             ...contact,
-            showMenu: false
+            showMenu: false,
+            showMenuDelay: false
           }
         })
       })
       .catch(error => {
         console.log(error)
       })
+},
+methods: {
+  toggleMenu(contact) {
+      contact.showMenu = !contact.showMenu;
+      contact.showMenuDelay = true;
+      if (contact.showMenu) {
+        anime({
+          targets: '.contact__menu',
+          height: 'auto',
+          duration: 1000,
+          easing: 'easeInOutQuad'
+        });
+      } else {
+        anime({
+          targets: '.contact__menu',
+          height: 0,
+          duration: 1000,
+          easing: 'easeInOutQuad'
+        });
+      }
+      setTimeout(() => {
+        contact.showMenuDelay = contact.showMenu;
+      }, 5000);
   }
-}
+}   
+  }
 </script>
 
 <style lang='scss' scoped>
@@ -115,6 +140,7 @@ export default {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 20px;
+  //height: 0;
 }
 
 .contact {
@@ -123,8 +149,7 @@ export default {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
-  margin-bottom: 20px;
-  
+  margin-bottom: 20px;  
 }
 
 .contact__header {
@@ -144,15 +169,26 @@ export default {
 .contact__menu-toggle {
   font-weight: bold;
   font-size: 1.2rem;
-
+ // transition: 0.3s ease-out;
+  //opacity: 0;
+  
 }
 
 .contact__menu {
-  margin-top: 10px;
-
+  overflow: hidden;
+  transition: height 3s ease;
+}
+.contact__menu.showMenu {
+  height: auto; // set height to auto when shown
+  display: block;
+  animation: expand 1s ease-out;
+  transition: height 1s ease-in-out;
 }
 
-
+@keyframes expand {
+  0% { height: 0; }
+  100% { height: fit-content; }
+}
 
 .contact__item:hover {
   color: $secondary-color;
@@ -187,7 +223,6 @@ ul {
 
   .contact__item-info-item {
     flex-basis: auto;
-
   }
 
   .contact__item-info-label {

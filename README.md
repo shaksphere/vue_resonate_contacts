@@ -1,5 +1,6 @@
 # :iphone: Responsive "Contacts Application 
 
+### Summary:
 This application was built using Vue 3 for a technical take home assessment for a Software Engineering role.
 
 ## :scroll: The Requirements: 

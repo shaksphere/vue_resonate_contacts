@@ -1,10 +1,41 @@
+@import "@picocss/pico";
 @import "variables";
+// @mixin responsive($size) {
+//   @media (max-width: $size) {
+//     @content;
+//   }
+// }
 
-@mixin responsive($size) {
-  @media (max-width: $size) {
-    @content;
-  }
+@media screen and (max-width: 600px) {
+  /* styles for screens smaller than 600px */
+  // :root, html, body, div, .container {
+  //   max-width: 375px;
+  //   max-height: 670px;
+
+  // }
 }
+
+@media screen and (min-width: 600px) {
+  /* styles for screens larger than 600px */
+}
+@-ms-viewport{
+  width: device-width;
+}
+
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     color: $primary-color;
+//     background-color: #002A6A 35%;
+// }
+//   a:hover {
+//     color: #747bff;
+//   }
+//   button {
+//     background-color: #f9f9f9;
+//   }
+
+  
+// }
 
 img {
   max-width: 100px;
@@ -16,13 +47,22 @@ img {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
+  //color: #002A6A 35%;
   //background-color: #242424;
-
+  //background-color: #002A6A 35%;
+  //background: #002A6A 35%;
+  background-image: url(./assets/search-page.png), linear-gradient(180deg, #F2F2F2 0%, #002A6A 35%);
+  background-size: cover;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  //-webkit-text-size-adjust: 100%;
+  --spacing: 0rem;
+  --border-width: 0px;
+  ::-webkit-scrollbar {
+    width: auto;
+  }
 }
 
 a {
@@ -49,6 +89,13 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+ul li{
+  list-style: none!important;
+  padding: 0;
+  margin: 0;
+
 }
 
 h1 {
@@ -80,23 +127,19 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: $primary-color;
-    background-color: #f9f9f9;
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 1000,
+  'GRAD' 0,
+  'opsz' 88
 }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+
 
 

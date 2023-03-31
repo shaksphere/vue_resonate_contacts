@@ -3,3 +3,85 @@ $secondary-color: #898F9C;
 $font-color: #000000;
 $font-size-base: 16px;
 $spacing: 20px;
+:root {
+    --black
+  : rgba(0, 0, 0, 1);
+    --tuna
+  : rgba(57, 54, 67, 1);
+    --indigo
+  : rgba(83, 119, 188, 1);
+    --stack
+  : rgba(142, 142, 142, 1);
+    --alto
+  : rgba(217, 217, 217, 1);
+    --white
+  : rgba(255, 255, 255, 1);
+  
+    --font-size-m
+  : 14px;
+    --font-size-l
+  : 18px;
+    --font-size-xl
+  : 22px;
+  
+    --font-family-lato
+  : "Lato";
+  }
+  
+  $grid__bp-md: 768;
+
+      
+  
+  .lato-bold-indigo-14px
+   {
+    color: var(--indigo
+  );
+    font-family: var(--font-family-lato
+  );
+    font-size: var(--font-size-m
+  );
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+      
+  
+  .lato-normal-stack-14px
+   {
+    color: var(--stack
+  );
+    font-family: var(--font-family-lato
+  );
+    font-size: var(--font-size-m
+  );
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+      
+  
+  .lato-semi-bold-tuna-18px
+   {
+    color: var(--tuna
+  );
+    font-family: var(--font-family-lato
+  );
+    font-size: var(--font-size-l
+  );
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+      
+  
+  .lato-normal-white-14px
+   {
+    color: var(--white
+  );
+    font-family: var(--font-family-lato
+  );
+    font-size: var(--font-size-m
+  );
+    font-weight: 400;
+    font-style: normal;
+  }
